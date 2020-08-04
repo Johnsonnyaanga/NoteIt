@@ -36,9 +36,6 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModel = ViewModelProvider(this, factory).get(NoteViewModel::class.java)
 
-        //binding.viewModel = viewModel
-        //viewModel.noteListener = this
-
         initUI()
         initRecyclerView()
 
@@ -47,7 +44,7 @@ class HomeFragment : Fragment() {
 
     private fun initUI() {
         binding.floatingActionButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_fragment_home_to_fragment_note)
+            it.findNavController().navigate(R.id.action_fragment_home_to_fragment_edit_note)
         }
     }
 

@@ -41,10 +41,14 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel(), O
         }
     }
 
-    val allNotes= liveData(Dispatchers.IO){
+    val allNotes = liveData(Dispatchers.IO) {
         noteListener?.onStarted()
-        val notes=noteRepository.getAllNotes()
+        val notes = noteRepository.getAllNotes()
         emit(notes)
+    }
+
+    fun deleteNote(note: Note) = viewModelScope.launch {
+        noteRepository.deleteNote(note)
     }
 
 

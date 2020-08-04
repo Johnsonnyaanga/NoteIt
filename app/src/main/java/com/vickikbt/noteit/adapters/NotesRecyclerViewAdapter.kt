@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.vickikbt.noteit.R
 import com.vickikbt.noteit.db.Note
-import kotlinx.android.synthetic.main.note_item.view.*
+import com.vickikbt.noteit.ui.fragments.HomeFragmentDirections
 
 class NotesRecyclerViewAdapter(private val noteList: List<Note>, private val context: Context) :
     RecyclerView.Adapter<NoteRecyclerViewHolder>() {
@@ -26,6 +27,12 @@ class NotesRecyclerViewAdapter(private val noteList: List<Note>, private val con
 
         holder.title.text = note.title
         holder.description.text = note.description
+
+        holder.itemView.setOnClickListener {
+            val action = HomeFragmentDirections.actionFragmentHomeToFragmentNote(position)
+
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }
 

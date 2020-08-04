@@ -13,10 +13,28 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_note"
             app:destination="@id/fragment_note" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_edit_note"
+            app:destination="@id/fragment_edit_note" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_edit_note"
+        android:name="com.vickikbt.noteit.ui.fragments.EditNoteFragment"
+        android:label="Edit Note"
+        tools:layout="@layout/fragment_edit_note" />
+
     <fragment
         android:id="@+id/fragment_note"
         android:name="com.vickikbt.noteit.ui.fragments.NoteFragment"
-        android:label="Note"
-        tools:layout="@layout/fragment_note" />
+        android:label="Note" >
+        <argument
+            android:name="Position"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_fragment_note_to_fragment_edit_note"
+            app:destination="@id/fragment_edit_note" />
+    </fragment>
+
 </navigation>
