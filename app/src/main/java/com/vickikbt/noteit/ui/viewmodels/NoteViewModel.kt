@@ -8,7 +8,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.vickikbt.noteit.db.Note
 import com.vickikbt.noteit.repository.NoteRepository
-import com.vickikbt.noteit.util.NoteListener
+import com.vickikbt.noteit.util.StateListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -20,29 +20,29 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel(), O
     @Bindable
     val description = MutableLiveData<String>()
 
-    var noteListener: NoteListener? = null
+    var StateListener: StateListener? = null
 
     fun saveNote() = viewModelScope.launch {
-        noteListener?.onStarted()
+        StateListener?.onStarted()
         if (title.value.isNullOrEmpty()) {
-            noteListener?.onFailure("Enter note title!")
+            StateListener?.onFailure("Enter note title!")
             return@launch
         } else if (description.value.isNullOrEmpty()) {
-            noteListener?.onFailure("Enter note description!")
+            StateListener?.onFailure("Enter note description!")
             return@launch
         }
 
         try {
             noteRepository.upsertNote(Note(0, title.value!!, description.value!!))
-            noteListener?.onSuccess("Note Saved")
+            StateListener?.onSuccess("Note Saved")
             return@launch
         } catch (e: Exception) {
-            noteListener?.onFailure("Error: $e")
+            StateListener?.onFailure("Error: $e")
         }
     }
 
     val allNotes = liveData(Dispatchers.IO) {
-        noteListener?.onStarted()
+        StateListener?.onStarted()
         val notes = noteRepository.getAllNotes()
         emit(notes)
     }

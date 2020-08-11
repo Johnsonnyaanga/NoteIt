@@ -13,10 +13,10 @@ import com.vickikbt.noteit.repository.NoteRepository
 import com.vickikbt.noteit.ui.activities.MainActivity
 import com.vickikbt.noteit.ui.viewmodels.NoteViewModeFactory
 import com.vickikbt.noteit.ui.viewmodels.NoteViewModel
-import com.vickikbt.noteit.util.NoteListener
+import com.vickikbt.noteit.util.StateListener
 import com.vickikbt.noteit.util.toast
 
-class EditNoteFragment : Fragment(), NoteListener {
+class EditNoteFragment : Fragment(), StateListener {
 
     private lateinit var binding: FragmentEditNoteBinding
     private lateinit var viewModel: NoteViewModel
@@ -35,7 +35,7 @@ class EditNoteFragment : Fragment(), NoteListener {
 
         binding.viewModel = viewModel
 
-        viewModel.noteListener = this
+        viewModel.StateListener = this
 
         return binding.root
     }

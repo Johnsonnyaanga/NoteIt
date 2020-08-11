@@ -1,6 +1,6 @@
 package com.vickikbt.noteit.util
 
-interface NoteListener {
+interface StateListener {
 
     fun onStarted()
 

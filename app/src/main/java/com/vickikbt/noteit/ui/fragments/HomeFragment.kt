@@ -17,7 +17,6 @@ import com.vickikbt.noteit.db.Note
 import com.vickikbt.noteit.repository.NoteRepository
 import com.vickikbt.noteit.ui.viewmodels.NoteViewModeFactory
 import com.vickikbt.noteit.ui.viewmodels.NoteViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
@@ -53,7 +52,12 @@ class HomeFragment : Fragment() {
         val adapter = NotesRecyclerViewAdapter(noteList, requireActivity())
 
         viewModel.allNotes.observe(viewLifecycleOwner, Observer {
-            //val notes = it.value
+
+            if (it.isEmpty()) {
+                binding.textViewNoNotes.visibility = View.VISIBLE
+            } else {
+                binding.textViewNoNotes.visibility = View.GONE
+            }
 
             for (i in it.indices) {
                 noteList.add(it[i])
