@@ -7,19 +7,39 @@ Build System : [Gradle](https://gradle.org/)
 
 ## Table of content.
 
-- [Room](#room)
-- [Libraries](#libraries)
+- [App Screenshots](#appscreenshots)
+- [Introduction](#introduction)
 - [Getting started](#gettingstarted)
+
+## App Screenshots.
+
+<p align="center">
+    <img src="images/no_note.png">
+</p>
+
+<p align="center">
+    <img src="images/note1.png">
+</p>
+
+<p align="center">
+    <img src="images/note_saved.png">
+</p>
+
+<p align="center">
+    <img src="images/note_actions.png">
+</p>
+
 
 ## Introduction.
 Room provides an abstraction layer over SQLite to allow fluent database access while harnessing the full power of SQLite.
 
-The most common use case of Room is cacheing data from a network case which can then be accessed when the device is offline or even when the device is online but in order to reduce network usage.
+The most common use case of Room is cacheing data from a network source which can then be accessed when the device is offline or even when the device is online but in order to reduce network usage.
 
 Room has three main components:
 - Entity: Represents the tables within the database.
 - Data Access Objects: Represents the database querry to access data in the database.
 - Database: Acts as the main access point for the underlying connection to your app's persisted, relational data.
+
 
 ## Getting Started.
 Start by setting up databinding and the dependencies for the project
@@ -225,7 +245,6 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel(), O
 
         try {
             noteRepository.upsertNote(Note(0, title.value!!, description.value!!))
-
             StateListener?.onSuccess("Note Saved")
             return@launch
         } catch (e: Exception) {
