@@ -15,17 +15,8 @@ Build System : [Gradle](https://gradle.org/)
 
 <p align="center">
     <img src="images/no_note.png">
-</p>
-
-<p align="center">
     <img src="images/note1.png">
-</p>
-
-<p align="center">
     <img src="images/note_saved.png">
-</p>
-
-<p align="center">
     <img src="images/note_actions.png">
 </p>
 
